@@ -5,7 +5,7 @@
 1. **教学 BPE**：从带频次的语料学习四轮合并规则，与手算结果核对，再编码新词 `bug`。
 2. **真实 GPT-2 tokenizer**：使用 `tiktoken` 将文本编码为 Token ID，再解码并验证原文还原。
 
-代码不调用大模型 API，不需要账号、API Key 或模型权重。安装依赖、准备好官方编码数据后，演示与验证均可离线执行。
+代码不调用大模型 API，。安装依赖、准备好官方编码数据后，演示与验证均可离线执行。
 
 ## 快速运行
 
@@ -137,4 +137,4 @@ Python `len(text)` 按 Unicode 码点计数，不对所有文本都等同于视�
 - 真实编码库：[OpenAI tiktoken](https://github.com/openai/tiktoken)，固定使用 0.7.0。
 - 官方 GPT-2 编码数据：[vocab.bpe](https://openaipublic.blob.core.windows.net/gpt-2/encodings/main/vocab.bpe)、[encoder.json](https://openaipublic.blob.core.windows.net/gpt-2/encodings/main/encoder.json)。程序记录并校验 SHA-256。
 
-仓库仅包含代码、说明及实测结果。依赖包、虚拟环境、编码缓存、课程参考书 PDF 和个人电脑路径均不随仓库提交。
+仓库仅包含代码、说明及实测结果。
