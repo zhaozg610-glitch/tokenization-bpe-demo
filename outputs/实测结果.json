@@ -1,0 +1,476 @@
+{
+  "run_time_utc8": "2026-11-08T21:11:42+08:00",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "dependencies": {
+    "tiktoken": "0.7.0",
+    "regex": "2026.11.7",
+    "requests": "2.34.2",
+    "charset-normalizer": "3.5.2",
+    "idna": "3.20",
+    "urllib3": "2.8.0",
+    "certifi": "2026.10.23"
+  },
+  "source_sha256": {
+    "bpe_demo.py": "315cd86dc5e4f6431d286d21b81bf353e9c17ee408c0497c3028b1f2f46a9906",
+    "tokenizer_demo.py": "4d837e59ad48738b24c38621d1650d9da47544797ed7a0055c7560379307781b",
+    "run_all.py": "5aa53915a11d52df62a08d586f1a8d01be35c56af9f075c7193494ec15e2cf79"
+  },
+  "network_disabled_during_validation": true,
+  "toy_bpe": {
+    "algorithm": "toy character BPE, word-pretokenized",
+    "source": "https://huggingface.co/learn/llm-course/chapter6/5",
+    "corpus": {
+      "hug": 10,
+      "pug": 5,
+      "pun": 12,
+      "bun": 4,
+      "hugs": 5
+    },
+    "rules": [
+      [
+        "u",
+        "g"
+      ],
+      [
+        "u",
+        "n"
+      ],
+      [
+        "h",
+        "ug"
+      ],
+      [
+        "p",
+        "un"
+      ]
+    ],
+    "trace": [
+      {
+        "round": 1,
+        "pair": [
+          "u",
+          "g"
+        ],
+        "count": 20,
+        "splits": {
+          "hug": [
+            "h",
+            "ug"
+          ],
+          "pug": [
+            "p",
+            "ug"
+          ],
+          "pun": [
+            "p",
+            "u",
+            "n"
+          ],
+          "bun": [
+            "b",
+            "u",
+            "n"
+          ],
+          "hugs": [
+            "h",
+            "ug",
+            "s"
+          ]
+        },
+        "weighted_token_count": 93
+      },
+      {
+        "round": 2,
+        "pair": [
+          "u",
+          "n"
+        ],
+        "count": 16,
+        "splits": {
+          "hug": [
+            "h",
+            "ug"
+          ],
+          "pug": [
+            "p",
+            "ug"
+          ],
+          "pun": [
+            "p",
+            "un"
+          ],
+          "bun": [
+            "b",
+            "un"
+          ],
+          "hugs": [
+            "h",
+            "ug",
+            "s"
+          ]
+        },
+        "weighted_token_count": 77
+      },
+      {
+        "round": 3,
+        "pair": [
+          "h",
+          "ug"
+        ],
+        "count": 15,
+        "splits": {
+          "hug": [
+            "hug"
+          ],
+          "pug": [
+            "p",
+            "ug"
+          ],
+          "pun": [
+            "p",
+            "un"
+          ],
+          "bun": [
+            "b",
+            "un"
+          ],
+          "hugs": [
+            "hug",
+            "s"
+          ]
+        },
+        "weighted_token_count": 62
+      },
+      {
+        "round": 4,
+        "pair": [
+          "p",
+          "un"
+        ],
+        "count": 12,
+        "splits": {
+          "hug": [
+            "hug"
+          ],
+          "pug": [
+            "p",
+            "ug"
+          ],
+          "pun": [
+            "pun"
+          ],
+          "bun": [
+            "b",
+            "un"
+          ],
+          "hugs": [
+            "hug",
+            "s"
+          ]
+        },
+        "weighted_token_count": 50
+      }
+    ],
+    "bug_tokens": [
+      "b",
+      "ug"
+    ],
+    "roundtrips": [
+      {
+        "text": "hug",
+        "pieces": [
+          "hug"
+        ],
+        "ids": [
+          3
+        ],
+        "restored": "hug"
+      },
+      {
+        "text": "pug",
+        "pieces": [
+          "p",
+          "ug"
+        ],
+        "ids": [
+          5,
+          9
+        ],
+        "restored": "pug"
+      },
+      {
+        "text": "pun",
+        "pieces": [
+          "pun"
+        ],
+        "ids": [
+          6
+        ],
+        "restored": "pun"
+      },
+      {
+        "text": "bun",
+        "pieces": [
+          "b",
+          "un"
+        ],
+        "ids": [
+          0,
+          10
+        ],
+        "restored": "bun"
+      },
+      {
+        "text": "hugs",
+        "pieces": [
+          "hug",
+          "s"
+        ],
+        "ids": [
+          3,
+          7
+        ],
+        "restored": "hugs"
+      },
+      {
+        "text": "bug",
+        "pieces": [
+          "b",
+          "ug"
+        ],
+        "ids": [
+          0,
+          9
+        ],
+        "restored": "bug"
+      }
+    ],
+    "coverage_error_mug": "未覆盖基础字符：['m']",
+    "checks": {
+      "rules_match_manual": true,
+      "counts_match_manual": true,
+      "lengths_match_manual": true,
+      "final_splits_match_ppt": true,
+      "bug_split_correct": true,
+      "six_roundtrips_pass": true,
+      "unknown_character_rejected": true,
+      "input_order_invariant": true
+    }
+  },
+  "real_tokenizer": {
+    "library": "tiktoken",
+    "library_version": "0.7.0",
+    "encoding": "gpt2",
+    "vocabulary_size": 50257,
+    "rows": [
+      {
+        "text": "Hello, world!",
+        "codepoints": 13,
+        "utf8_bytes": 13,
+        "token_count": 4,
+        "ids": [
+          15496,
+          11,
+          995,
+          0
+        ],
+        "restored": "Hello, world!",
+        "roundtrip": true,
+        "token_bytes_hex": [
+          "48656c6c6f",
+          "2c",
+          "20776f726c64",
+          "21"
+        ]
+      },
+      {
+        "text": "中文",
+        "codepoints": 2,
+        "utf8_bytes": 6,
+        "token_count": 3,
+        "ids": [
+          40792,
+          23877,
+          229
+        ],
+        "restored": "中文",
+        "roundtrip": true,
+        "token_bytes_hex": [
+          "e4b8ad",
+          "e696",
+          "87"
+        ]
+      },
+      {
+        "text": "🎵",
+        "codepoints": 1,
+        "utf8_bytes": 4,
+        "token_count": 3,
+        "ids": [
+          8582,
+          236,
+          113
+        ],
+        "restored": "🎵",
+        "roundtrip": true,
+        "token_bytes_hex": [
+          "f09f",
+          "8e",
+          "b5"
+        ]
+      },
+      {
+        "text": "playing",
+        "codepoints": 7,
+        "utf8_bytes": 7,
+        "token_count": 1,
+        "ids": [
+          17916
+        ],
+        "restored": "playing",
+        "roundtrip": true,
+        "token_bytes_hex": [
+          "706c6179696e67"
+        ]
+      },
+      {
+        "text": "港口机器人",
+        "codepoints": 5,
+        "utf8_bytes": 15,
+        "token_count": 11,
+        "ids": [
+          162,
+          116,
+          107,
+          20998,
+          96,
+          17312,
+          118,
+          161,
+          247,
+          101,
+          21689
+        ],
+        "restored": "港口机器人",
+        "roundtrip": true,
+        "token_bytes_hex": [
+          "e6",
+          "b8",
+          "af",
+          "e58f",
+          "a3",
+          "e69c",
+          "ba",
+          "e5",
+          "99",
+          "a8",
+          "e4baba"
+        ]
+      },
+      {
+        "text": "Akwirw ier",
+        "codepoints": 10,
+        "utf8_bytes": 10,
+        "token_count": 6,
+        "ids": [
+          33901,
+          86,
+          343,
+          86,
+          220,
+          959
+        ],
+        "restored": "Akwirw ier",
+        "roundtrip": true,
+        "token_bytes_hex": [
+          "416b",
+          "77",
+          "6972",
+          "77",
+          "20",
+          "696572"
+        ]
+      },
+      {
+        "text": "Hello  world!\n",
+        "codepoints": 14,
+        "utf8_bytes": 14,
+        "token_count": 5,
+        "ids": [
+          15496,
+          220,
+          995,
+          0,
+          198
+        ],
+        "restored": "Hello  world!\n",
+        "roundtrip": true,
+        "token_bytes_hex": [
+          "48656c6c6f",
+          "20",
+          "20776f726c64",
+          "21",
+          "0a"
+        ]
+      },
+      {
+        "text": "def f():\n    return 1\n",
+        "codepoints": 22,
+        "utf8_bytes": 22,
+        "token_count": 10,
+        "ids": [
+          4299,
+          277,
+          33529,
+          198,
+          220,
+          220,
+          220,
+          1441,
+          352,
+          198
+        ],
+        "restored": "def f():\n    return 1\n",
+        "roundtrip": true,
+        "token_bytes_hex": [
+          "646566",
+          "2066",
+          "28293a",
+          "0a",
+          "20",
+          "20",
+          "20",
+          "2072657475726e",
+          "2031",
+          "0a"
+        ]
+      },
+      {
+        "text": "",
+        "codepoints": 0,
+        "utf8_bytes": 0,
+        "token_count": 0,
+        "ids": [],
+        "restored": "",
+        "roundtrip": true,
+        "token_bytes_hex": []
+      }
+    ],
+    "emoji_partial": {
+      "first_token_id": 8582,
+      "bytes_hex": "f09f",
+      "standalone_utf8_valid": false,
+      "whole_sequence_roundtrip": true
+    },
+    "checks": {
+      "cache_sha256_valid": true,
+      "gpt2_reference_ids_match": true,
+      "nine_roundtrips_pass": true,
+      "encoding_deterministic": true,
+      "all_token_bytes_reconstruct_utf8": true,
+      "emoji_partial_byte_behavior_confirmed": true
+    }
+  },
+  "scope": "局部算法与编码验证；未运行语言模型，未评估模型语义能力或多语言质量。"
+}

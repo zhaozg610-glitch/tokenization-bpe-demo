@@ -1,0 +1,10 @@
+{
+  "bpe": {
+    "code": "from bpe_demo import CORPUS, train_bpe, encode_word\nrules, trace = train_bpe(CORPUS, 4)\nfor row in trace:\n    print(row[\"round\"], row[\"pair\"], row[\"count\"])\ntokens = encode_word(\"bug\", rules)\nprint(\"bug =\", tokens)\nassert tokens == [\"b\", \"ug\"]",
+    "stdout": "1 ('u', 'g') 20\n2 ('u', 'n') 16\n3 ('h', 'ug') 15\n4 ('p', 'un') 12\nbug = ['b', 'ug']\n"
+  },
+  "tokenizer": {
+    "code": "from tokenizer_demo import load_encoding\nenc = load_encoding()  # GPT-2，使用离线词表\nfor text in [\"Hello, world!\", \"中文\", \"🎵\"]:\n    ids = enc.encode(text)\n    restored = enc.decode(ids)\n    print(repr(text), ids)\n    print(len(text), len(ids), restored == text)\n    assert restored == text",
+    "stdout": "'Hello, world!' [15496, 11, 995, 0]\n13 4 True\n'中文' [40792, 23877, 229]\n2 3 True\n'🎵' [8582, 236, 113]\n1 3 True\n"
+  }
+}

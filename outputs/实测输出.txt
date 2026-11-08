@@ -1,0 +1,42 @@
+=== 演示一：教学 BPE ===
+round 1: u + g -> ug, count=20
+round 2: u + n -> un, count=16
+round 3: h + ug -> hug, count=15
+round 4: p + un -> pun, count=12
+bug = ['b', 'ug']
+mug = 未覆盖基础字符：['m']
+验证：规则、频数、最终状态、6 组编解码及覆盖边界通过。
+
+=== 演示二：真实 GPT-2 tokenizer ===
+tiktoken=0.7.0, encoding=gpt2, vocab=50257
+text='Hello, world!'
+  chars=13, bytes=13, tokens=4
+  ids=[15496, 11, 995, 0], roundtrip=True
+text='中文'
+  chars=2, bytes=6, tokens=3
+  ids=[40792, 23877, 229], roundtrip=True
+text='🎵'
+  chars=1, bytes=4, tokens=3
+  ids=[8582, 236, 113], roundtrip=True
+text='playing'
+  chars=7, bytes=7, tokens=1
+  ids=[17916], roundtrip=True
+text='港口机器人'
+  chars=5, bytes=15, tokens=11
+  ids=[162, 116, 107, 20998, 96, 17312, 118, 161, 247, 101, 21689], roundtrip=True
+text='Akwirw ier'
+  chars=10, bytes=10, tokens=6
+  ids=[33901, 86, 343, 86, 220, 959], roundtrip=True
+text='Hello  world!\n'
+  chars=14, bytes=14, tokens=5
+  ids=[15496, 220, 995, 0, 198], roundtrip=True
+text='def f():\n    return 1\n'
+  chars=22, bytes=22, tokens=10
+  ids=[4299, 277, 33529, 198, 220, 220, 220, 1441, 352, 198], roundtrip=True
+text=''
+  chars=0, bytes=0, tokens=0
+  ids=[], roundtrip=True
+emoji 首 Token 字节=f09f，单独 UTF-8 合法=False，整段还原=True
+验证：9 组整段还原、字节重建、确定性与 GPT-2 参考值通过。
+
+ALL CHECKS PASSED：所有列出的检查均通过，运行期间禁止网络连接。

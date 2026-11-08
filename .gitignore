@@ -218,3 +218,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Local course demo dependencies and downloaded tokenizer data
+.python-deps/
+.pip-temp/
+tokenizer_cache/
+*.tmp
